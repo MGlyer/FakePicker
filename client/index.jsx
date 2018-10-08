@@ -4,7 +4,7 @@ import axios from "axios";
 
 class App extends React.Component {
   state = {
-    randItems: ['first', 'cat', 'woof'],
+    randItems: [],
     showFakeBox: false,
     showThrillResult: false,
     itemToShow: '',
@@ -13,6 +13,8 @@ class App extends React.Component {
   handleFakeBoxChange = this.handleFakeBoxChange.bind(this)
   showThrill = this.showThrill.bind(this)
   handleAddBoxChange = this. handleAddBoxChange.bind(this)
+  addItem = this.addItem.bind(this)
+  removeItem = this.removeItem.bind(this)
 
   handleFakeBoxChange(e) {
     this.setState({itemToShow: e.target.value})
@@ -26,6 +28,18 @@ class App extends React.Component {
     this.setState({showThrillResult: true})
   }
 
+  addItem() {
+    let oldList = this.state.randItems
+    oldList.push(this.state.itemToAdd)
+    this.setState({randItems: oldList})
+  }
+  
+  removeItem(i) {
+    let oldList = this.state.randItems
+    oldList.splice(i, 1)
+    this.setState({randItems: oldList})
+  }
+
 
 
   render() {
@@ -36,14 +50,14 @@ class App extends React.Component {
           {this.state.showFakeBox ? <input onChange = {this.handleFakeBoxChange}  type="text"/> : null}
           {!this.state.showThrillResult ? null : <div className="pickedItem">{this.state.itemToShow}</div>}
           <div onChange = {this.handleAddBoxChange} className="inputItem">
-            <button className="add">Add an Item</button>  <button onClick = {this.showThrill} className="pick">Thrill Us</button>
+            <button className="add" onClick = {this.addItem}>Add an Item</button>  <button onClick = {this.showThrill} className="pick">Thrill Us</button>
             <input type="text" />
           </div>
           <div className="enteredItems">
-            {this.state.randItems.map((randItem) => {
+            {this.state.randItems.map((randItem, ind) => {
               return (
                 <div>
-                  {randItem}
+                  {randItem}     <button onClick = {() => this.removeItem(ind)} className="remove">X</button>
                 </div>
               )
             })}
