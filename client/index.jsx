@@ -16,24 +16,25 @@ class App extends React.Component {
   addItem = this.addItem.bind(this)
   removeItem = this.removeItem.bind(this)
 
+  //handles the state change of the text that will actually be displayed
   handleFakeBoxChange(e) {
     this.setState({itemToShow: e.target.value})
   }
-
+  //handles the state change of the add item box
   handleAddBoxChange(e) {
     this.setState({itemToAdd: e.target.value})
   }
-  
+  //reveals the predetermined text
   showThrill() {
     this.setState({showThrillResult: true})
   }
-
+  //adds the text in the add item box to state, rendering it out onto the page
   addItem() {
     let oldList = this.state.randItems
     oldList.push(this.state.itemToAdd)
     this.setState({randItems: oldList})
   }
-  
+  //removes the item from render and from the state's array of items
   removeItem(i) {
     let oldList = this.state.randItems
     oldList.splice(i, 1)
