@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
+import students from '../hrnyc18'
 
 class App extends React.Component {
   state = {
-    randItems: [],
+    randItems: students,
     showFakeBox: false,
     showThrillResult: false,
     itemToShow: '',
-    itemToAdd: ''
+    itemToAdd: '',
+    showThinking: false
   };
   handleFakeBoxChange = this.handleFakeBoxChange.bind(this)
   showThrill = this.showThrill.bind(this)
@@ -26,7 +28,9 @@ class App extends React.Component {
   }
   //reveals the predetermined text
   showThrill() {
-    this.setState({showThrillResult: true})
+    this.setState({showThinking: true}, () => {
+      setTimeout(() => this.setState({showThrillResult: true, showThinking: false}), 1000)
+    })
   }
   //adds the text in the add item box to state, rendering it out onto the page
   addItem() {
@@ -48,6 +52,7 @@ class App extends React.Component {
       <div style={{textAlign: 'center'}}>
         <h1>Random Picker</h1>
         <div className="mainBody">
+          {this.state.showThinking ? <p>thinking....</p> : null }
           {this.state.showFakeBox ? <input onChange = {this.handleFakeBoxChange}  type="text"/> : null}
           {!this.state.showThrillResult ? null : <div className="pickedItem" style={{padding: '10px'}}>{this.state.itemToShow}</div>}
           <div onChange = {this.handleAddBoxChange} className="inputItem">
