@@ -45,11 +45,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{textAlign: 'center'}}>
         <h1>Random Picker</h1>
         <div className="mainBody">
           {this.state.showFakeBox ? <input onChange = {this.handleFakeBoxChange}  type="text"/> : null}
-          {!this.state.showThrillResult ? null : <div className="pickedItem">{this.state.itemToShow}</div>}
+          {!this.state.showThrillResult ? null : <div className="pickedItem" style={{padding: '10px'}}>{this.state.itemToShow}</div>}
           <div onChange = {this.handleAddBoxChange} className="inputItem">
             <button className="add" onClick = {this.addItem}>Add an Item</button>  <button onClick = {this.showThrill} className="pick">Thrill Us</button>
             <input type="text" />
