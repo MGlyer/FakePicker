@@ -1,13 +1,10 @@
 module.exports = [
 'Ben Mangold',
-'Bradley Morgan',
-'Christian Carter',
 'David Weinzimmer',
 'Dev Patel',
 'Grant Diamond',
 'Indi Kaur',
 'John Sangiolo',
-'Jonathan Sewell',
 'Kai Chen',
 'Kenny Polyak',
 'Kenni Silverio',
